@@ -16,7 +16,7 @@ withdraw(Who, Amount) -> gen_server:call(?MODULE, {remove, Who, Amount}).
 init([]) -> {ok, ets:new(?MODULE, [])}.
 
 %% process the new_accout/1
-handle_call({new, Who}, _From, Tab) ->1
+handle_call({new, Who}, _From, Tab) ->
     Reply = case ets:lookup(Tab, Who) of
         [] -> ets:insert(Tab, {Who, 0}),
             {welcome, Who};
