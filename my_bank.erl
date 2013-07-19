@@ -2,24 +2,25 @@
 -compile(export_all).
 -behaviour(gen_server).
 
-%% -define(my_bank, ?MODULE).
+-define(my_bank, ?MODULE).
 
 %% API
 start() -> gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 stop() -> gen_server:call(?MODULE, stop).
-new_account(Who) -> gen_server:call(?MOUDLE, {new, Who}).
+
+new_account(Who) -> gen_server:call(?MODULE, {new, Who}).
 deposit(Who, Amount) -> gen_server:call(?MODULE, {add, Who, Amount}).
 withdraw(Who, Amount) -> gen_server:call(?MODULE, {remove, Who, Amount}).
 
 
-init([]) -> {ok, ets:new(?MOUDLE, [])}.
+init([]) -> {ok, ets:new(?MODULE, [])}.
 
 %% process the new_accout/1
-handle_call({new, Who}, _From, Tab) ->
+handle_call({new, Who}, _From, Tab) ->1
     Reply = case ets:lookup(Tab, Who) of
         [] -> ets:insert(Tab, {Who, 0}),
             {welcome, Who};
-        [_] -> {Account exists!}
+        [_] -> {account_exists}
     end,
     {reply, Reply, Tab};
 
@@ -54,5 +55,4 @@ handle_call(stop, _From, Tab) ->
 handle_cast(_Msg, State) -> {noreply, State}.
 handle_info(_Info, State) -> {noreply, State}.
 terminate(_Reason, _State) -> ok.
-code_change(_OldVsn, State, Extra) -> {ok, State}.
-
+code_change(_OldVsn, State, _Extra) -> {ok, State}.
