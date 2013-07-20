@@ -6,4 +6,4 @@
         ,chat_times  %% 聊天次数
         ,last_login  %% 最后一次登录时间
     }
-)
+).
