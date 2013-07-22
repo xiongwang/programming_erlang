@@ -7,20 +7,21 @@
 -define(PORT, 4210).
 
 login(Username, Passwd) ->
-    {ok, Socket} = gen_tcp:connect(?ADDRESS, ?PORT, [binary, {packet, 0}, {active, once}]),
+    {ok, Socket} = gen_tcp:connect(?ADDRESS, ?PORT, [binary, {packet, 0}, {active, false}, {header, 1}]),
     Login_Request = [0, Username, Passwd],
-    ok = gen_tcp:send(Socket, term_to_binary(Login_Request)),
+    ok = gen_tcp:send(Socket, Login_Request),
     io:format("finished sending login_request~n"),
+
     case gen_tcp:recv(Socket, 0) of
-        {error, _closed} ->
-            io:format("error encountered when log in~n");
         {ok, Data} ->
-            case ("CHECK PASSED" =:= binary_to_term(Data)) of
+            case ("CHECK PASSED" =:= Data) of
                 true ->
                     start(Socket);
                 false ->
                      io:format("login failed~n")
-            end
+             end;
+        {error, _closed} ->
+            io:format("error encountered when log in~n")
     end.
 
 start(Socket) ->
@@ -31,7 +32,7 @@ start(Socket) ->
 receive_msg(Socket) ->
     receive 
         {tcp, Socket, Bin} ->
-            io:format("~nClient received: ~p~n", [binary_to_term(Bin)]),
+            io:format("~nClient received: ~p~n", [Bin]),
             receive_msg(Socket)
     end.
 
@@ -54,12 +55,12 @@ chat(Socket) ->
 get_online_count(Socket) ->
     io:format("requesting for online count...~n"),
     New_Msg = [1, "ONLINECOUNT"],
-    ok = gen_tcp:send(Socket, term_to_binary(New_Msg)),
+    ok = gen_tcp:send(Socket, New_Msg),
     chat(Socket).
 
 send_msg(Socket) ->
     Msg = io:get_line("Your Msg Here: "),
     New_Msg = [2, Msg],
     io:format("finished obtainning Msg~n"),
-    ok = gen_tcp:send(Socket, term_to_binary(New_Msg)),
+    ok = gen_tcp:send(Socket, New_Msg),
     chat(Socket).

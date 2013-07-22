@@ -1,5 +1,6 @@
 -module(chat_server).
 -compile(export_all).
+
 -include("chat_server.hrl").
 
 -define(PORT, 4210).
@@ -14,7 +15,7 @@ start() ->
     ets:insert(userTable, User2),
 
     register(client_controller, spawn(fun() -> deal_with_clients([]) end)),
-    {ok, ListenSocket} = gen_tcp:listen(?PORT, [binary, {active, false}, {header, 1} ] ),
+    {ok, ListenSocket} = gen_tcp:listen(?PORT, [binary, {active, once}, {header, 1} ] ),
     do_accept(ListenSocket).
 
 do_accept(ListenSocket) ->
@@ -49,10 +50,10 @@ deal_with_clients(Sockets) ->
         {connect, Socket} ->
             io:format("Socket connected: ~p~n", [Socket]),
             NewSockets = [Socket | Sockets],
-            io:format("Socketed Updated: ~p~n", [NewSockets]);
+            io:format("Sockets Updated: ~p~n", [NewSockets]);
         {disconnect, Socket} ->
             NewSockets = lists:delete(Socket, Sockets),
-            io:format("~p disconnected, Sockets Updated ~p~n", [Socket, NewSockets]);
+            io:format("~p disconnected, Sockets now are ~p~n", [Socket, NewSockets]);
         {chat, Data, Socket} ->
            [Opt | _Rest] = Data,
             case Opt of
@@ -60,14 +61,13 @@ deal_with_clients(Sockets) ->
                     case check_user_passwd(Data) of
                         true ->
                             Msg = "CHECK PASSED",
-                            gen_tcp:send(Socket, term_to_binary(Msg));
+                            gen_tcp:send(Socket, Msg);
                         false ->
                             gen_tcp:close(Socket)
                     end;
                 1 ->
                     Online_count = length(Sockets),
-                    Msg = term_to_binary("Online Count is: " ++ integer_to_list(Online_count)),
-                    Data = term_to_binary(Msg);
+                    Data = "Online Count is: " ++ integer_to_list(Online_count);
 
                 _AnyOther ->
                     other_reason_in_receive_inside_deal_with_clients
@@ -82,7 +82,7 @@ deal_with_clients(Sockets) ->
 %% server发送消息给所有人
 send_data(Sockets, Data) ->
     SendData = (fun(Socket) ->
-                io:format("Socket is~p~n", [Socket]),
+                io:format("Socket ~p will be sent msg~n", [Socket]),
                 io:format("Send ~p~n", [gen_tcp:send(Socket, Data)]) end),
     lists:foreach(SendData, Sockets),
     io:format("finished transferring~n").
