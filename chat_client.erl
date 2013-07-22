@@ -6,15 +6,32 @@
 -define(ADDRESS, localhost).
 -define(PORT, 4210).
 
-start() ->
-    {ok, Socket} = gen_tcp:connect(?ADDRESS, ?PORT, [binary, {packet, 4}, {active, false}]),
+login(Username, Passwd) ->
+    {ok, Socket} = gen_tcp:connect(?ADDRESS, ?PORT, [binary, {packet, 0}, {active, once}]),
+    Login_Request = [0, Username, Passwd],
+    ok = gen_tcp:send(Socket, term_to_binary(Login_Request)),
+    io:format("finished sending login_request~n"),
+    case gen_tcp:recv(Socket, 0) of
+        {error, _closed} ->
+            io:format("error encountered when log in~n");
+        {ok, Data} ->
+            case ("CHECK PASSED" =:= binary_to_term(Data)) of
+                true ->
+                    start(Socket);
+                false ->
+                     io:format("login failed~n")
+            end
+    end.
+
+start(Socket) ->
+    %% {ok, Socket} = gen_tcp:connect(?ADDRESS, ?PORT, [binary, {packet, 4}, {active, once}]),
     _Pid = spawn(fun() -> chat(Socket) end),
     receive_msg(Socket).
 
 receive_msg(Socket) ->
     receive 
         {tcp, Socket, Bin} ->
-            io:format("Client received: ~p ~n", [binary_to_term(Bin)]),
+            io:format("~nClient received: ~p~n", [binary_to_term(Bin)]),
             receive_msg(Socket)
     end.
 
@@ -34,13 +51,15 @@ chat(Socket) ->
             io:format("Illegal Input! Program will quit now.~n")
     end.
 
-send_msg(Socket) ->
-    Msg = io:get_line("Your Msg Here: "),
-    io:format("finished obtainning Msg~n"),
-    ok = gen_tcp:send(Socket, term_to_binary(Msg)),
-    chat(Socket).
-
 get_online_count(Socket) ->
     io:format("requesting for online count...~n"),
-    ok = gen_tcp:send(Socket, term_to_binary("ONLINECOUNT")),
+    New_Msg = [1, "ONLINECOUNT"],
+    ok = gen_tcp:send(Socket, term_to_binary(New_Msg)),
+    chat(Socket).
+
+send_msg(Socket) ->
+    Msg = io:get_line("Your Msg Here: "),
+    New_Msg = [2, Msg],
+    io:format("finished obtainning Msg~n"),
+    ok = gen_tcp:send(Socket, term_to_binary(New_Msg)),
     chat(Socket).
