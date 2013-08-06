@@ -1,50 +1,66 @@
+%=============================================================================
+%FileName     : chat_server.erl
+%Desc         : 聊天室服务端
+%Author       : wang xiong
+%Email        : xiongwang@live.com
+%LastChange   : 2013-08-06 20:03:31
+%============================================================================
 -module(chat_server).
 -compile(export_all).
 
 -include("chat_server.hrl").
 
--define(PORT, 4210).
+-define(PORT, 9999).
 
-%% Implements
-start() ->
-    %% 手工建立 用户名-密码 表
+% 手工建立用户名-密码表
+initTab() ->
     ets:new(userTable, [public, named_table, {keypos, #user.name}] ),
     User1 = #user{id = 1, name="wangxiong", passwd = "123"},
     User2 = #user{id = 2, name="wangzhen", passwd = "123"},
     ets:insert(userTable, User1),
-    ets:insert(userTable, User2),
+    ets:insert(userTable, User2);
 
-    register(client_controller, spawn(fun() -> deal_with_clients([]) end)),
-    {ok, ListenSocket} = gen_tcp:listen(?PORT, [binary, {active, once}, {header, 1} ] ),
-    do_accept(ListenSocket).
+% 建立监听
+start() ->
+    {ok, ListenSocket} = gen_tcp:listen(?PORT, [binary, {active, once}]),
+    do_accept(ListenSocket, 0).
 
-do_accept(ListenSocket) ->
+% 将连接请求分离出来, 交给deal_with_clients处理
+do_accept(ListenSocket, Count) ->
     {ok, Socket} = gen_tcp:accept(ListenSocket),
-    spawn(fun() -> handle_client(Socket) end),
-    client_controller ! {connect, Socket},
-    do_accept(ListenSocket).
+    io:format("Now in do_accept()~n", []),
+    spawn(?MODULE, do_accept, [ListenSocket, Count+1]),
+    handle_request(ListenSocket, Count).
 
-handle_client(Socket) ->
-    io:format("Now in handle_client~n"),
+handle_request(Socket, Count) ->
+    io:format("Now in handle_request~n"),
     case gen_tcp:recv(Socket, 0) of 
         {ok, Data} ->
             %解析得到的Data
-            client_controller ! {chat, Data, Socket},  
-            handle_client(Socket);  
+            [Flag | _Content] = Data,
+            case Flag of
+                %登录校验
+                0 ->
+                    check_user_passwd(Data, Socket);
+                %转发消息
+                1 ->
+                    send_all(Data)
+            end,
+            handle_request(Socket, Count);
         {error, closed} ->  
-            client_controller ! {disconnect, Socket}  
+            io:format("Socket disconnected: ~p~n", [Socket])      
     end.  
         
-%% 验证用户密码, 返回通过true或者失败false
-check_user_passwd(Data) ->
-    io:format("Now in check_user_passwd~n"),
-    [_Opt, Username, Passwd] = Data,
-    UserItem = ets:lookup(userTable, Username),
-    % 需要从元组中提出Passwd字段!
-    [User] = UserItem,
+% 验证用户密码, 返回通过true或者失败false
+check_user_passwd(Data, Socket) ->
+    io:format("Now in check_user_passwd!~n"),
+    [Flag, LenUsername, LenPasswd | Msg] = Data,
+    {Username, Rest} =lists:split(LenUsername, 
+    [User] = ets:lookup(userTable, Username),
+    % 元组中提出Passwd字段
     User#user.passwd =:= Passwd.
 
-%% 维护Clients列表, 并转发消息给所有clients
+% 维护Clients列表, 并转发消息给所有clients
 deal_with_clients(Sockets) ->
     receive
         {connect, Socket} ->
@@ -55,14 +71,16 @@ deal_with_clients(Sockets) ->
             NewSockets = lists:delete(Socket, Sockets),
             io:format("~p disconnected, Sockets now are ~p~n", [Socket, NewSockets]);
         {chat, Data, Socket} ->
-           [Opt | _Rest] = Data,
+           [Opt, _Rest] = Data,
             case Opt of
                 0 ->
                     case check_user_passwd(Data) of
                         true ->
+                            io:format("Checking Passed~n"),
                             Msg = "CHECK PASSED",
                             gen_tcp:send(Socket, Msg);
                         false ->
+                            io:format("Checking Failed~n"),
                             gen_tcp:close(Socket)
                     end;
                 1 ->
@@ -73,20 +91,17 @@ deal_with_clients(Sockets) ->
                     other_reason_in_receive_inside_deal_with_clients
             end,
             
-            send_data(Sockets, Data),
+            send_all(Sockets, Data),
             io:format("transfer Data: ~p~n", [Data]),
             NewSockets = Sockets
     end,
     deal_with_clients(NewSockets).
 
-%% server发送消息给所有人
-send_data(Sockets, Data) ->
-    SendData = (fun(Socket) ->
-                io:format("Socket ~p will be sent msg~n", [Socket]),
-                io:format("Send ~p~n", [gen_tcp:send(Socket, Data)]) end),
+%% server转发发送消息给所有人
+send_all(Sockets, Data) ->
+    SendData = (fun(Socket) -> 
+                        io:format("Socket ~p will be sent msg~n", [Socket])
+                        , io:format("Send ~p~n", [gen_tcp:send(Socket, Data)]) 
+                end),
     lists:foreach(SendData, Sockets),
     io:format("finished transferring~n").
-
-%% 获取列表的长度, 已废弃, 使用length/1
-%% get_list_length([]) -> 0;
-%% get_list_length([ _First | Rest]) -> 1 + get_list_length(Rest).

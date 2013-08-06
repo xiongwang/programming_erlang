@@ -1,13 +1,20 @@
+%=============================================================================
+%FileName     : chat_client.erl
+%Desc         : 聊天室客户端
+%Author       : wang xiong
+%Email        : xiongwang@live.com
+%LastChange   : 2013-08-06 20:03:31
+%============================================================================
 -module(chat_client).
 -compile(export_all).
 
 -include("chat_server.hrl").
 
 -define(ADDRESS, localhost).
--define(PORT, 4210).
+-define(PORT, 9999).
 
 login(Username, Passwd) ->
-    {ok, Socket} = gen_tcp:connect(?ADDRESS, ?PORT, [binary, {packet, 0}, {active, false}, {header, 1}]),
+    {ok, Socket} = gen_tcp:connect(?ADDRESS, ?PORT, [binary, {packet, 0}, {active, false}]),
     Login_Request = [0, Username, Passwd],
     ok = gen_tcp:send(Socket, Login_Request),
     io:format("finished sending login_request~n"),
