@@ -18,33 +18,34 @@ initTab() ->
     User1 = #user{id = 1, name="wangxiong", passwd = "123"},
     User2 = #user{id = 2, name="wangzhen", passwd = "123"},
     ets:insert(userTable, User1),
-    ets:insert(userTable, User2);
+    ets:insert(userTable, User2).
 
-% 建立监听
+% 监听
 start() ->
-    {ok, ListenSocket} = gen_tcp:listen(?PORT, [binary, {active, once}]),
+    {ok, ListenSocket} = gen_tcp:listen(?PORT, [binary, {active, false}]),
     do_accept(ListenSocket, 0).
 
-% 将连接请求分离出来, 交给deal_with_clients处理
+% 接受请求
 do_accept(ListenSocket, Count) ->
     {ok, Socket} = gen_tcp:accept(ListenSocket),
-    io:format("Now in do_accept()~n", []),
-    spawn(?MODULE, do_accept, [ListenSocket, Count+1]),
-    handle_request(ListenSocket, Count).
+    io:format("New Socket Came in: ~w~n", [Socket]),
+    spawn(?MODULE, do_accept, [ListenSocket, Count + 1]),
+    handle_request(Socket, Count).
 
 handle_request(Socket, Count) ->
     io:format("Now in handle_request~n"),
     case gen_tcp:recv(Socket, 0) of 
         {ok, Data} ->
             %解析得到的Data
-            [Flag | _Content] = Data,
+            [Flag, _Rest] = Data,
             case Flag of
                 %登录校验
                 0 ->
                     check_user_passwd(Data, Socket);
                 %转发消息
                 1 ->
-                    send_all(Data)
+                    % 此处如何解决socket和sockets的矛盾??
+                    send_all(Socket, Data)
             end,
             handle_request(Socket, Count);
         {error, closed} ->  
@@ -55,10 +56,15 @@ handle_request(Socket, Count) ->
 check_user_passwd(Data, Socket) ->
     io:format("Now in check_user_passwd!~n"),
     [Flag, LenUsername, LenPasswd | Msg] = Data,
-    {Username, Rest} =lists:split(LenUsername, 
-    [User] = ets:lookup(userTable, Username),
-    % 元组中提出Passwd字段
-    User#user.passwd =:= Passwd.
+    FullMsg = binary_to_list(Msg),
+    {Username, Rest} =lists:split(LenUsername, FullMsg),
+    {Passwd, MsgContent} = lists:split(LenPasswd, Rest),
+    
+    UserObject = ets:match_object(userTable, 
+                                  #user{name=Username, passwd=Passwd, _='_'}
+                                 ),
+    % 判断是否查找到用户
+    UserObject =/= [].
 
 % 维护Clients列表, 并转发消息给所有clients
 deal_with_clients(Sockets) ->
@@ -74,7 +80,7 @@ deal_with_clients(Sockets) ->
            [Opt, _Rest] = Data,
             case Opt of
                 0 ->
-                    case check_user_passwd(Data) of
+                    case check_user_passwd(Data, Socket) of
                         true ->
                             io:format("Checking Passed~n"),
                             Msg = "CHECK PASSED",
@@ -99,7 +105,7 @@ deal_with_clients(Sockets) ->
 
 %% server转发发送消息给所有人
 send_all(Sockets, Data) ->
-    SendData = (fun(Socket) -> 
+    SendData = (fun(Socket) ->
                         io:format("Socket ~p will be sent msg~n", [Socket])
                         , io:format("Send ~p~n", [gen_tcp:send(Socket, Data)]) 
                 end),

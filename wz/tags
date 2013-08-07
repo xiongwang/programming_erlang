@@ -1,0 +1,54 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+addCharTimes	.\server.erl	/^addCharTimes(User) ->$/;"	f	module:server
+addLoginTimes	.\server.erl	/^addLoginTimes(User) ->$/;"	f	module:server
+addSocket	.\server.erl	/^addSocket(User, Login, Socket1) when Login == "pass" ->$/;"	f	module:server
+add_name	.\name.erl	/^add_name(Name) ->$/;"	f	module:name
+checkUserLogin	.\server.erl	/^checkUserLogin(Data, Socket1) ->$/;"	f	module:server
+client	.\client.erl	/^-module(client).$/;"	m
+connect	.\client.erl	/^connect() ->$/;"	f	module:client
+create	.\name_db.erl	/^create() ->$/;"	f	module:name_db
+createTab	.\server.erl	/^createTab() ->$/;"	f	module:server
+create_userTab	.\client.erl	/^create_userTab() ->$/;"	f	module:client
+del_name	.\name.erl	/^del_name(Name) ->$/;"	f	module:name
+delete	.\name_db.erl	/^delete(Name, Table) ->$/;"	f	module:name_db
+get	.\name_db.erl	/^get(NameId, Table) ->$/;"	f	module:name_db
+getSocketByName	.\server.erl	/^getSocketByName(UserName) ->$/;"	f	module:server
+get_name_byid	.\name.erl	/^get_name_byid(NameId) ->$/;"	f	module:name
+get_readnum	.\name.erl	/^get_readnum() ->$/;"	f	module:name
+get_request	.\client.erl	/^get_request(Socket1) ->$/;"	f	module:client
+get_request	.\server.erl	/^get_request(Socket1, Count) ->$/;"	f	module:server
+get_writenum	.\name.erl	/^get_writenum() ->$/;"	f	module:name
+handle_call	.\name.erl	/^handle_call({add_name, Name}, _From, LoopData) ->$/;"	f	module:name
+handle_call	.\name.erl	/^handle_call({del_name, Name}, _From, LoopData) ->$/;"	f	module:name
+handle_call	.\name.erl	/^handle_call({get_name, NameId}, _From, LoopData) ->$/;"	f	module:name
+handle_call	.\name.erl	/^handle_call({get_readnum}, _From, LoopData) ->$/;"	f	module:name
+handle_call	.\name.erl	/^handle_call({get_writenum}, _From, LoopData) ->$/;"	f	module:name
+handle_cast	.\name.erl	/^handle_cast(stop, LoopData) ->$/;"	f	module:name
+init	.\name.erl	/^init(_Arg) ->$/;"	f	module:name
+insert	.\name_db.erl	/^insert(Name, Table) ->$/;"	f	module:name_db
+insert	.\name_db.erl	/^insert(NameLst, Name, Table = #table{maxid = MaxId}) ->$/;"	f	module:name_db
+insert	.\name_db.erl	/^insert([], Name, Table) ->$/;"	f	module:name_db
+name	.\name.erl	/^-module(name).$/;"	m
+name	.\name.hrl	/^-record(name, {id, name}).$/;"	r
+name_db	.\name_db.erl	/^-module(name_db).$/;"	m
+said	.\client.erl	/^said(DesUser, Msg) ->$/;"	f	module:client
+sendMessage	.\server.erl	/^sendMessage(Data) ->$/;"	f	module:server
+sendMsg	.\client.erl	/^sendMsg(Socket1, Data) ->$/;"	f	module:client
+server	.\server.erl	/^-module(server).$/;"	m
+socket	.\server.erl	/^-record(socket, {username, socket}).$/;"	r
+startServer	.\server.erl	/^startServer() ->$/;"	f	module:server
+start_link	.\name.erl	/^start_link() ->$/;"	f	module:name
+stop	.\name.erl	/^stop() ->$/;"	f	module:name
+table	.\name.hrl	/^-record(table, {name_lst, maxid, readnum, writenum}).$/;"	r
+terminate	.\name.erl	/^terminate(_Reason, _LoopData) ->$/;"	f	module:name
+user	.\server.erl	/^-record(user, {$/;"	r
+user_login	.\client.erl	/^user_login(UserName, Password) ->$/;"	f	module:client
+user_login	.\server.erl	/^user_login(User, Pasw) ->$/;"	f	module:server
+user_logout	.\client.erl	/^user_logout(UserName) ->$/;"	f	module:client
+virtual_client	.\server.erl	/^virtual_client(Socket1, Data) ->$/;"	f	module:server
+wait_connect	.\server.erl	/^wait_connect(ListenSocket, Count) ->$/;"	f	module:server
