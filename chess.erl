@@ -9,7 +9,11 @@
 -module(chess).
 -behaviour(gen_server).
 
--compile(export_all).
+-export([
+         start/0, stop/0,
+         a/1, b/1
+]).
+
 -export([
     init/1,
     handle_call/3, handle_cast/2, handle_info/2,
@@ -40,21 +44,9 @@ start_link(Arg) ->
 
 %% @return ok
 stop() ->
-    self() ! stop.
-
-%% @param Callback = fun/1 | {Module, Func}/1
-call(Callback) ->
-    gen_server:call(?SERVER, {'$call', Callback}).
-
-%% @param Callback = fun/1 | {Module, Func}/1
-cast(Callback) ->
-    gen_server:cast(?SERVER, {'$cast', Callback}).
-
-call(Flag, Info) ->
-    gen_server:call(?SERVER, {Flag, Info}).
-
-cast(Flag, Info) ->
-    gen_server:cast(?SERVER, {Flag, Info}).
+    stop(normal).
+stop(Reason) ->
+    gen_server:cast(?SERVER, {stop, Reason}).
 
 %%====================================================================
 %% Callback functions
@@ -96,7 +88,7 @@ handle_call({'$call', Callback}, _From, State) ->
     {reply, Reply, State};
 
 handle_call({stop, Reason}, _From, State) ->
-    {stop, Reason, ok, State};
+    {stop, Reason, State};
 
 handle_call(_Request, _From, State) ->
     {noreply, State}.
@@ -122,6 +114,9 @@ handle_cast({a, [Pos]}, State) ->
 handle_cast({b, [Pos]}, State) ->
     do_b(Pos),
     {noreply, State};
+
+handle_cast({stop, Reason}, State) ->
+    {stop, Reason, State};
 
 handle_cast(_Info, State) -> 
     {noreply, State}.
@@ -180,9 +175,8 @@ print_board(Board) ->
     {A, B, C, D, E, F, G, H ,I} = Board,
     Round = get(round),
     io:format("Round: ~p~n", [Round]),
-    io:format("   ~p   ~p   ~p~n", [A, B, C]),
-    io:format("   ~p   ~p   ~p~n", [D, E, F]),
-    io:format("   ~p   ~p   ~p~n", [G, H, I]).
+    io:format("   ~p   ~p   ~p~n   ~p   ~p   ~p~n   ~p   ~p   ~p~n"
+              , [A, B, C, D, E, F, G, H, I]).
 
 
 do_a(Pos) ->
@@ -225,10 +219,10 @@ check_can_move(Pos, Board) ->
 check_is_win(Board) ->
     case do_check_is_win(Board) of
         {win, a} ->
-            io:format("~n===============~nA WON THE GAME!!!!~n===============~n"),
+            io:format("~n===============~nA WON THE GAME!~n===============~n"),
             stop();
         {win, b} ->
-            io:format("~n===============~nB WON THE GAME!!!!~n===============~n"),
+            io:format("~n===============~nB WON THE GAME!~n===============~n"),
             stop();
         {draw} ->
             io:format("~n===============~nPLAYER DRAW!~n==================~n"),
