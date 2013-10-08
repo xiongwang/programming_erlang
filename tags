@@ -6,14 +6,25 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 ADDRESS	.\chat_client.erl	/^-define(ADDRESS, localhost).$/;"	d
 ADDRESS	.\chat_client_recv.erl	/^-define(ADDRESS, localhost).$/;"	d
+ADDRESS	.\new_chat_client.erl	/^-define(ADDRESS, localhost).$/;"	d
+DOUBLE_CONNECTED	.\chess_ai.erl	/^-define(DOUBLE_CONNECTED, 50).$/;"	d
+DRAW	.\chess_ai.erl	/^-define(DRAW, 0).$/;"	d
 FUY	.\shop1.erl	/^-define(FUY, [{oranges,4}, {newspapers,1}, {apples,10}, {pears, 6}, {milk,3}]).$/;"	d
 Findcomplete	.\pathogen.vim	/^function! s:Findcomplete(A,L,P) " {{{1$/;"	f
 Helptags	.\pathogen.vim	/^command! -bar Helptags :call pathogen#helptags()$/;"	c
+INFINITY	.\chess_ai.erl	/^-define(INFINITY, 100).$/;"	d
+INPROGRESS	.\chess_ai.erl	/^-define(INPROGRESS, 1).$/;"	d
+LOSE	.\chess_ai.erl	/^-define(LOSE, ?INFINITY).$/;"	d
 M	.\ex8_11_2.erl	/^-define(M, 1000). %% each Msg will be sent M times$/;"	d
 N	.\ex8_11_2.erl	/^-define(N, 200000). %% there will be N processes$/;"	d
-PORT	.\chat_client.erl	/^-define(PORT, 4210).$/;"	d
+NOT_END	.\chess_ai.erl	/^-define(NOT_END, 1).$/;"	d
+PORT	.\chat_client.erl	/^-define(PORT, 9999).$/;"	d
 PORT	.\chat_client_recv.erl	/^-define(PORT, 4210).$/;"	d
-PORT	.\chat_server.erl	/^-define(PORT, 4210).$/;"	d
+PORT	.\chat_server.erl	/^-define(PORT, 9999).$/;"	d
+PORT	.\new_chat_client.erl	/^-define(PORT, 9999).$/;"	d
+PORT	.\new_chat_server.erl	/^-define(PORT, 9999).$/;"	d
+SERVER	.\chess.erl	/^-define(SERVER, ?MODULE).$/;"	d
+SERVER	.\chess_ai.erl	/^-define(SERVER, ?MODULE).$/;"	d
 TRACE	.\m1.erl	/^-define(TRACE(X), io:format("TRACE ~p:~p ~p~n", [?MODULE, ?LINE, X])).$/;"	d
 TRACE	.\m1.erl	/^-define(TRACE(X), void).$/;"	d
 TableID	.\ets_operations.erl	/^TableID = test_ets(Mode) ->$/;"	f	module:ets_test
@@ -25,10 +36,17 @@ Vread	.\pathogen.vim	/^command! -bar -bang -range=1 -nargs=1 -complete=customlis
 Vsplit	.\pathogen.vim	/^command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Vsplit   :execute s:find(<count>,'split',<q-args>,<bang>1)$/;"	c
 Vtabedit	.\pathogen.vim	/^command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Vtabedit :execute s:find(<count>,'tabedit',<q-args>,<bang>1)$/;"	c
 Vvsplit	.\pathogen.vim	/^command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Vvsplit  :execute s:find(<count>,'vsplit',<q-args>,<bang>1)$/;"	c
+WIN	.\chess_ai.erl	/^-define(WIN, -?INFINITY).$/;"	d
+a	.\chess.erl	/^a(Pos) ->$/;"	f	module:chess
+a	.\chess_ai.erl	/^a(Pos) ->$/;"	f	module:chess_ai
 a	.\spawn_link_test.erl	/^a() ->$/;"	f	module:spawn_link_test
 add	.\name_server.erl	/^add(Name, Place) -> rpc(name_server, {add, Name, Place}).$/;"	f	module:name_server
 add	.\name_server1.erl	/^add(Name, Place) -> rpc(name_server, {add, Name, Place}).$/;"	f	module:name_server1
 add	.\new_name_server.erl	/^add(Name, Place) -> rpc(name_server, {add, Name, Place}).$/;"	f	module:new_name_server
+addCharTimes	.\wz\server.erl	/^addCharTimes(User) ->$/;"	f	module:server
+addLoginTimes	.\wz\server.erl	/^addLoginTimes(User) ->$/;"	f	module:server
+addSocket	.\wz\server.erl	/^addSocket(User, Login, Socket1) when Login == "pass" ->$/;"	f	module:server
+add_name	.\wz\name.erl	/^add_name(Name) ->$/;"	f	module:name
 all_names	.\new_name_server.erl	/^all_names() -> rpc(name_server, allNames).$/;"	f	module:new_name_server
 area	.\area_server3.erl	/^area(Pid, What) ->$/;"	f	module:area_server3
 area_server0	.\area_server0.erl	/^-module(area_server0).$/;"	m
@@ -39,43 +57,88 @@ area_server3	.\area_server3.erl	/^-module(area_server3).$/;"	m
 average	.\average.erl	/^-module(average).$/;"	m
 average	.\average.erl	/^average(L) -> sum(L) \/ num(L).$/;"	f	module:average
 average	.\average.erl	/^average([]) -> 0;$/;"	f	module:average
+b	.\chess.erl	/^b(Pos) ->$/;"	f	module:chess
 b	.\spawn_link_test.erl	/^b(A, Bool) ->$/;"	f	module:spawn_link_test
 broadcasting	.\broadcasting.erl	/^-module(broadcasting).$/;"	m
 c	.\spawn_link_test.erl	/^c(B, Msg) ->$/;"	f	module:spawn_link_test
+calc	.\calc.erl	/^-module(calc).$/;"	m
 cancel	.\stimer.erl	/^cancel(Pid) ->$/;"	f	module:stimer
+case	.\case1.erl	/^case Level > 40 of$/;"	f	module:case1
+case1	.\case1.erl	/^-module(case1).$/;"	m
 catcher	.\try_test.erl	/^catcher(N) ->$/;"	f	module:try_test
 chat	.\chat_client.erl	/^chat(Socket) ->$/;"	f	module:chat_client
 chat	.\chat_client_recv.erl	/^chat(Socket) ->$/;"	f	module:chat_client_recv
+chat	.\new_chat_client.erl	/^chat(MsgContent) ->$/;"	f	module:new_chat_client
+chat	.\new_chat_client.erl	/^chat(Socket, Username, MsgContent) ->$/;"	f	module:new_chat_client
 chat_client	.\chat_client.erl	/^-module(chat_client).$/;"	m
 chat_client_recv	.\chat_client_recv.erl	/^-module(chat_client_recv).$/;"	m
 chat_server	.\chat_server.erl	/^-module(chat_server).$/;"	m
-check_user_passwd	.\chat_server.erl	/^check_user_passwd(Data) ->$/;"	f	module:chat_server
+checkUserLogin	.\wz\server.erl	/^checkUserLogin(Data, Socket1) ->$/;"	f	module:server
+check_can_move	.\chess.erl	/^check_can_move(Pos, Board) ->$/;"	f	module:chess
+check_can_move	.\chess_ai.erl	/^check_can_move(Pos, Board) ->$/;"	f	module:chess_ai
+check_is_win	.\chess.erl	/^check_is_win(Board) ->$/;"	f	module:chess
+check_is_win	.\chess_ai.erl	/^check_is_win(Board) ->$/;"	f	module:chess_ai
+check_login	.\new_chat_server.erl	/^check_login(Data, Socket) ->$/;"	f	module:new_chat_server
+check_user_passwd	.\chat_server.erl	/^check_user_passwd(Data, Socket) ->$/;"	f	module:chat_server
+chess	.\chess.erl	/^-module(chess).$/;"	m
+chess_ai	.\chess_ai.erl	/^-module(chess_ai).$/;"	m
 client	.\udp_test.erl	/^client(Request) ->$/;"	f	module:udp_test
+client	.\wz\client.erl	/^-module(client).$/;"	m
 client_eval	.\socket_example.erl	/^client_eval(Str) ->$/;"	f	module:socket_example
 climb	.\snail.erl	/^climb(H, M) ->$/;"	f	module:snail
 clock	.\clock.erl	/^-module(clock).$/;"	m
+code_change	.\chess.erl	/^code_change(_OldVsn, State, _Extra) ->$/;"	f	module:chess
+code_change	.\chess_ai.erl	/^code_change(_OldVsn, State, _Extra) ->$/;"	f	module:chess_ai
 code_change	.\my_bank.erl	/^code_change(_OldVsn, State, _Extra) -> {ok, State}.$/;"	f	module:my_bank
 code_change	.\my_name_server.erl	/^code_change(_OldVsn, State, _Extra) -> {ok, State}.$/;"	f	module:my_name_server
+connect	.\wz\client.erl	/^connect() ->$/;"	f	module:client
+cost	.\shop.erl	/^cost(apples)    ->2;$/;"	f	module:shop
+cost	.\shop.erl	/^cost(milk)      ->7./;"	f	module:shop
+cost	.\shop.erl	/^cost(newspaper) ->8;$/;"	f	module:shop
+cost	.\shop.erl	/^cost(oranges)    ->5;$/;"	f	module:shop
+cost	.\shop.erl	/^cost(pears)     ->9;$/;"	f	module:shop
 counter	.\my_name_server.erl	/^-record(counter, {$/;"	r
 counter	.\record_test.hrl	/^-record(counter, {$/;"	r
+create	.\wz\name_db.erl	/^create() ->$/;"	f	module:name_db
+createTab	.\wz\server.erl	/^createTab() ->$/;"	f	module:server
 create_processes	.\ex8_11_2.erl	/^create_processes(0, L) -> L;$/;"	f	module:ex8_11_2
 create_processes	.\ex8_11_2.erl	/^create_processes(N, L) ->$/;"	f	module:ex8_11_2
+create_userTab	.\wz\client.erl	/^create_userTab() ->$/;"	f	module:client
 ctemplate	.\ctemplate.erl	/^-module(ctemplate).$/;"	m
 deal_with_clients	.\chat_server.erl	/^deal_with_clients(Sockets) ->$/;"	f	module:chat_server
 decode_header	.\mp3_sync.erl	/^decode_header(<<2#11111111111:11, B:2, C:2, _D:1, E:4, F:2, G:1, Bits:9>>) ->$/;"	f	module:mp3_sync
+del_name	.\wz\name.erl	/^del_name(Name) ->$/;"	f	module:name
 delete	.\new_name_server.erl	/^delete(Name) -> rpc(name_server, {delete, Name}).$/;"	f	module:new_name_server
+delete	.\wz\name_db.erl	/^delete(Name, Table) ->$/;"	f	module:name_db
 demo	.\shop1.erl	/^demo() ->$/;"	f	module:shop1
 demo1	.\try_test.erl	/^demo1() ->$/;"	f	module:try_test
 demo2	.\try_test.erl	/^demo2() ->$/;"	f	module:try_test
 demo3	.\try_test.erl	/^demo3() ->$/;"	f	module:try_test
 deposit	.\my_bank.erl	/^deposit(Who, Amount) -> gen_server:call(?MODULE, {add, Who, Amount}).$/;"	f	module:my_bank
 display_all_names	.\my_name_server.erl	/^display_all_names() -> gen_server:call(?MODULE, {display_all_names}).$/;"	f	module:my_name_server
-do_accept	.\chat_server.erl	/^do_accept(ListenSocket) ->$/;"	f	module:chat_server
+dist_demo	.\dist_demo.erl	/^-module(dist_demo).$/;"	m
+do_a	.\chess.erl	/^do_a(Pos) ->$/;"	f	module:chess
+do_a	.\chess_ai.erl	/^do_a(Pos) ->$/;"	f	module:chess_ai
+do_accept	.\chat_server.erl	/^do_accept(ListenSocket, Count) ->$/;"	f	module:chat_server
+do_accept	.\new_chat_server.erl	/^do_accept(ListenSocket) ->$/;"	f	module:new_chat_server
+do_b	.\chess.erl	/^do_b(Pos) ->$/;"	f	module:chess
+do_b	.\chess_ai.erl	/^do_b(Pos) ->$/;"	f	module:chess_ai
+do_check_is_nearby	.\test.erl	/^do_check_is_nearby(MemberLst) ->$/;"	f	module:test
+do_check_is_nearby	.\test.erl	/^do_check_is_nearby([]) ->$/;"	f	module:test
+do_check_is_win	.\chess.erl	/^do_check_is_win(Board) ->$/;"	f	module:chess
+do_check_is_win	.\chess_ai.erl	/^do_check_is_win(Board) ->$/;"	f	module:chess_ai
 do_display_all	.\my_name_server.erl	/^do_display_all() ->$/;"	f	module:my_name_server
+do_get_best_pos	.\chess_ai.erl	/^do_get_best_pos(Count, Max, Index, BestMoves, BestValue, Board) ->$/;"	f	module:chess_ai
+do_get_best_pos	.\chess_ai.erl	/^do_get_best_pos(Max, Max, Index, BestMoves, BestValue, Board) ->$/;"	f	module:chess_ai
 do_get_name	.\my_name_server.erl	/^do_get_name(ID) ->$/;"	f	module:my_name_server
 do_lookup	.\ets_operations.erl	/^do_lookup(Ta$/;"	f	module:ets_test
+do_max_search	.\chess_ai.erl	/^do_max_search(Count, Max, BestValue, Board) ->$/;"	f	module:chess_ai
+do_max_search	.\chess_ai.erl	/^do_max_search(Max, Max, BestValue, Board) ->$/;"	f	module:chess_ai
+do_min_search	.\chess_ai.erl	/^do_min_search(Count, Max, BestValue, Board) ->$/;"	f	module:chess_ai
+do_min_search	.\chess_ai.erl	/^do_min_search(Max, Max, BestValue, Board) ->$/;"	f	module:chess_ai
 do_remove_all	.\my_name_server.erl	/^do_remove_all() ->$/;"	f	module:my_name_server
 do_remove_name	.\my_name_server.erl	/^do_remove_name(ID) ->$/;"	f	module:my_name_server
+do_request	.\new_chat_client.erl	/^do_request(Socket) ->$/;"	f	module:new_chat_client
 do_set_name	.\my_name_server.erl	/^do_set_name(ID, Name) ->$/;"	f	module:my_name_server
 do_show_stat	.\my_name_server.erl	/^do_show_stat(#counter{set_times = S, get_times = G, delete_times = D} = _State) ->$/;"	f	module:my_name_server
 doit	.\ex8_11_2.erl	/^doit(N, M) ->$/;"	f	module:ex8_11_2
@@ -85,8 +148,9 @@ error_test_server	.\socket_example.erl	/^error_test_server() ->$/;"	f	module:soc
 error_test_server_loop	.\socket_example.erl	/^error_test_server_loop(Socket) ->$/;"	f	module:socket_example
 ets_test	.\ets_operations.erl	/^-module(ets_test).$/;"	m
 ets_test	.\ets_test.erl	/^-module(ets_test).$/;"	m
-ex8_11_1	.\ex8_11_1.erl	/^-module(ex8_11_1).$/;"	m
+ex8_11_1	.\Ex8_11_1.erl	/^-module(ex8_11_1).$/;"	m
 ex8_11_2	.\ex8_11_2.erl	/^-module(ex8_11_2).$/;"	m
+f	.\case1.erl	/^f(Level) ->$/;"	f	module:case1
 fac	.\udp_test.erl	/^fac(0) -> 1;$/;"	f	module:udp_test
 fac	.\udp_test.erl	/^fac(N) -> N * fac(N-1).$/;"	f	module:udp_test
 fib	.\fib.erl	/^-module(fib).$/;"	m
@@ -101,15 +165,22 @@ fib_list	.\fib.erl	/^fib_list(L, N) -> fib_list([fib(N) | L], N-1).$/;"	f	module
 fib_tail	.\fib.erl	/^fib_tail(N, Index, R1, R2, L) ->$/;"	f	module:fib
 fib_tail	.\fib.erl	/^fib_tail(N, N, R1, R2, L) -> [R1 + R2|L];$/;"	f	module:fib
 find	.\pathogen.vim	/^function! s:find(count,cmd,file,lcd) " {{{1$/;"	f
+find_best_step	.\chess_ai.erl	/^find_best_step() ->$/;"	f	module:chess_ai
 find_sync	.\mp3_sync.erl	/^find_sync(Bin, N) ->$/;"	f	module:mp3_sync
+for	.\for.erl	/^-module(for).$/;"	m
+for	.\for.erl	/^for(I, Max, F) -> [F(I)|for(I+1, Max, F)]./;"	f	module:for
+for	.\for.erl	/^for(Max, Max, F) -> [F(Max)];$/;"	f	module:for
 for	.\processes.erl	/^for(I, N, F) -> [F()|for(I+1,N,F)].$/;"	f	module:processes
 for	.\processes.erl	/^for(N, N, F) -> [F()];$/;"	f	module:processes
 g:loaded_pathogen	.\pathogen.vim	/^let g:loaded_pathogen = 1$/;"	v
+game_state	.\chess_ai.erl	/^game_state(Board) ->$/;"	f	module:chess_ai
 generate_expection	.\try_catch.erl	/^generate_expection(1) -> a;$/;"	f	module:try_catch
 generate_expection	.\try_catch.erl	/^generate_expection(2) -> throw(a);$/;"	f	module:try_catch
 generate_expection	.\try_catch.erl	/^generate_expection(3) -> exit(a);$/;"	f	module:try_catch
 generate_expection	.\try_catch.erl	/^generate_expection(4) -> {'EXIT', a};$/;"	f	module:try_catch
 generate_expection	.\try_catch.erl	/^generate_expection(5) -> erlang:error(a).$/;"	f	module:try_catch
+get	.\wz\name_db.erl	/^get(NameId, Table) ->$/;"	f	module:name_db
+getSocketByName	.\wz\server.erl	/^getSocketByName(UserName) ->$/;"	f	module:server
 get_fib	.\fib.erl	/^get_fib(End, End) -> [fib(End)];$/;"	f	module:fib
 get_fib	.\fib.erl	/^get_fib(Start,End) -> [fib(Start)|get_fib(Start+1 , End)].$/;"	f	module:fib
 get_fib2	.\fib.erl	/^get_fib2(N) -> fib_list([], N).$/;"	f	module:fib
@@ -117,7 +188,12 @@ get_fib3	.\fib.erl	/^get_fib3(0) -> [0];$/;"	f	module:fib
 get_fib3	.\fib.erl	/^get_fib3(1) -> [1,0];$/;"	f	module:fib
 get_fib3	.\fib.erl	/^get_fib3(N) when N > 1, is_number(N) ->$/;"	f	module:fib
 get_name	.\my_name_server.erl	/^get_name(ID) -> gen_server:call(?MODULE, {lookup, ID}).$/;"	f	module:my_name_server
+get_name_byid	.\wz\name.erl	/^get_name_byid(NameId) ->$/;"	f	module:name
+get_online_cnt	.\new_chat_server.erl	/^get_online_cnt() ->$/;"	f	module:new_chat_server
 get_online_count	.\chat_client.erl	/^get_online_count(Socket) ->$/;"	f	module:chat_client
+get_readnum	.\wz\name.erl	/^get_readnum() ->$/;"	f	module:name
+get_request	.\wz\client.erl	/^get_request(Socket1) ->$/;"	f	module:client
+get_request	.\wz\server.erl	/^get_request(Socket1, Count) ->$/;"	f	module:server
 get_sqr	.\sqr_sum.erl	/^get_sqr(X) -> X * X.$/;"	f	module:sqr_sum
 get_stat	.\my_name_server.erl	/^get_stat() -> gen_server:call(?MODULE, {get_stat}).$/;"	f	module:my_name_server
 get_status	.\spawn_link_test.erl	/^get_status(Name, Pid) ->$/;"	f	module:spawn_link_test
@@ -126,6 +202,7 @@ get_sum	.\sqr_sum.erl	/^get_sum(N) -> get_sum(N-1) + get_sqr(N).$/;"	f	module:sq
 get_url	.\socket_example.erl	/^get_url() ->$/;"	f	module:socket_example
 get_url	.\socket_example.erl	/^get_url(Host) ->$/;"	f	module:socket_example
 get_word	.\mp3_sync.erl	/^get_word(N, bin) ->$/;"	f	module:mp3_sync
+get_writenum	.\wz\name.erl	/^get_writenum() ->$/;"	f	module:name
 handle	.\name_server.erl	/^handle({add, Name, Place}, Dict) ->$/;"	f	module:name_server
 handle	.\name_server.erl	/^handle({whereis, Name}, Dict) ->$/;"	f	module:name_server
 handle	.\name_server1.erl	/^handle({add, Name, Place}, Dict) ->$/;"	f	module:name_server1
@@ -134,6 +211,12 @@ handle	.\new_name_server.erl	/^handle(allNames, Dict) ->$/;"	f	module:new_name_s
 handle	.\new_name_server.erl	/^handle({add, Name, Place}, Dict) ->$/;"	f	module:new_name_server
 handle	.\new_name_server.erl	/^handle({delete, Name}, Dict) ->$/;"	f	module:new_name_server
 handle	.\new_name_server.erl	/^handle({whereis, Name}, Dict) ->$/;"	f	module:new_name_server
+handle_call	.\chess.erl	/^handle_call(_Request, _From, State) ->$/;"	f	module:chess
+handle_call	.\chess.erl	/^handle_call({'$call', Callback}, _From, State) ->$/;"	f	module:chess
+handle_call	.\chess.erl	/^handle_call({stop, Reason}, _From, State) ->$/;"	f	module:chess
+handle_call	.\chess_ai.erl	/^handle_call(_Request, _From, State) ->$/;"	f	module:chess_ai
+handle_call	.\chess_ai.erl	/^handle_call({'$call', Callback}, _From, State) ->$/;"	f	module:chess_ai
+handle_call	.\chess_ai.erl	/^handle_call({stop, Reason}, _From, State) ->$/;"	f	module:chess_ai
 handle_call	.\my_bank.erl	/^handle_call(stop, _From, Tab) ->$/;"	f	module:my_bank
 handle_call	.\my_bank.erl	/^handle_call({add, Who, X}, _From, Tab) ->$/;"	f	module:my_bank
 handle_call	.\my_bank.erl	/^handle_call({new, Who}, _From, Tab) ->$/;"	f	module:my_bank
@@ -145,35 +228,73 @@ handle_call	.\my_name_server.erl	/^handle_call({get_stat}, _From, State) ->$/;"	
 handle_call	.\my_name_server.erl	/^handle_call({lookup, ID}, _From, State) ->$/;"	f	module:my_name_server
 handle_call	.\my_name_server.erl	/^handle_call({remove, ID}, _From, State) ->$/;"	f	module:my_name_server
 handle_call	.\my_name_server.erl	/^handle_call({remove_all_names}, _From, State) ->$/;"	f	module:my_name_server
+handle_call	.\wz\name.erl	/^handle_call({add_name, Name}, _From, LoopData) ->$/;"	f	module:name
+handle_call	.\wz\name.erl	/^handle_call({del_name, Name}, _From, LoopData) ->$/;"	f	module:name
+handle_call	.\wz\name.erl	/^handle_call({get_name, NameId}, _From, LoopData) ->$/;"	f	module:name
+handle_call	.\wz\name.erl	/^handle_call({get_readnum}, _From, LoopData) ->$/;"	f	module:name
+handle_call	.\wz\name.erl	/^handle_call({get_writenum}, _From, LoopData) ->$/;"	f	module:name
+handle_cast	.\chess.erl	/^handle_cast(_Info, State) -> $/;"	f	module:chess
+handle_cast	.\chess.erl	/^handle_cast({'$cast', Callback}, State) ->$/;"	f	module:chess
+handle_cast	.\chess.erl	/^handle_cast({a, [Pos]}, State) ->$/;"	f	module:chess
+handle_cast	.\chess.erl	/^handle_cast({b, [Pos]}, State) ->$/;"	f	module:chess
+handle_cast	.\chess.erl	/^handle_cast({stop, Reason}, State) ->$/;"	f	module:chess
+handle_cast	.\chess_ai.erl	/^handle_cast(_Info, State) -> $/;"	f	module:chess_ai
+handle_cast	.\chess_ai.erl	/^handle_cast({'$cast', Callback}, State) ->$/;"	f	module:chess_ai
+handle_cast	.\chess_ai.erl	/^handle_cast({a, [Pos]}, State) ->$/;"	f	module:chess_ai
+handle_cast	.\chess_ai.erl	/^handle_cast({b, [Pos]}, State) ->$/;"	f	module:chess_ai
+handle_cast	.\chess_ai.erl	/^handle_cast({stop, Reason}, State) ->$/;"	f	module:chess_ai
 handle_cast	.\my_bank.erl	/^handle_cast(_Msg, State) -> {noreply, State}.$/;"	f	module:my_bank
 handle_cast	.\my_name_server.erl	/^handle_cast(_Msg, State) -> {noreply, State}.$/;"	f	module:my_name_server
-handle_client	.\chat_server.erl	/^handle_client(Socket) ->$/;"	f	module:chat_server
+handle_cast	.\wz\name.erl	/^handle_cast(stop, LoopData) ->$/;"	f	module:name
+handle_info	.\chess.erl	/^handle_info(_Info, State) -> $/;"	f	module:chess
+handle_info	.\chess.erl	/^handle_info(stop, State) ->$/;"	f	module:chess
+handle_info	.\chess.erl	/^handle_info({'EXIT', _Pid, _Why}, State) -> $/;"	f	module:chess
+handle_info	.\chess_ai.erl	/^handle_info(_Info, State) -> $/;"	f	module:chess_ai
+handle_info	.\chess_ai.erl	/^handle_info(stop, State) ->$/;"	f	module:chess_ai
+handle_info	.\chess_ai.erl	/^handle_info({'EXIT', _Pid, _Why}, State) -> $/;"	f	module:chess_ai
 handle_info	.\my_bank.erl	/^handle_info(_Info, State) -> {noreply, State}.$/;"	f	module:my_bank
 handle_info	.\my_name_server.erl	/^handle_info(_Info, State) -> {noreply, State}.$/;"	f	module:my_name_server
+handle_request	.\chat_server.erl	/^handle_request(Socket, Count) ->$/;"	f	module:chat_server
+handle_request	.\new_chat_server.erl	/^handle_request(Socket) ->$/;"	f	module:new_chat_server
 hello	.\hello.erl	/^-module(hello).$/;"	m
+init	.\chess.erl	/^init(_) ->$/;"	f	module:chess
+init	.\chess_ai.erl	/^init(_) ->$/;"	f	module:chess_ai
 init	.\my_bank.erl	/^init([]) -> {ok, ets:new(?MODULE, [])}.$/;"	f	module:my_bank
 init	.\my_name_server.erl	/^init([]) -> {ok, #counter{} }.$/;"	f	module:my_name_server
 init	.\name_server.erl	/^init() -> dict:new().$/;"	f	module:name_server
 init	.\name_server1.erl	/^init() -> dict:new().$/;"	f	module:name_server1
 init	.\new_name_server.erl	/^init() -> dict:new().$/;"	f	module:new_name_server
+init	.\wz\name.erl	/^init(_Arg) ->$/;"	f	module:name
+initTab	.\chat_server.erl	/^initTab() ->$/;"	f	module:chat_server
+insert	.\wz\name_db.erl	/^insert(Name, Table) ->$/;"	f	module:name_db
+insert	.\wz\name_db.erl	/^insert(NameLst, Name, Table = #table{maxid = MaxId}) ->$/;"	f	module:name_db
+insert	.\wz\name_db.erl	/^insert([], Name, Table) ->$/;"	f	module:name_db
+io:format	.\tut.erl	/^io:format("hello world, ~w~n", [X])./;"	f	module:tut
 is_header	.\mp3_sync.erl	/^is_header(N, Bin) ->$/;"	f	module:mp3_sync
 item	.\record.hrl	/^-record(item, {id, name, owner}).$/;"	r
+kvs	.\kvs.erl	/^-module(kvs).$/;"	m
 lib_misc	.\lib_misc.erl	/^-module(lib_misc).$/;"	m
+list_length	.\tut4.erl	/^list_length([First | Rest]) ->$/;"	f	module:tut4
+list_length	.\tut4.erl	/^list_length([]) ->$/;"	f	module:tut4
 listen	.\broadcasting.erl	/^listen() ->$/;"	f	module:broadcasting
 log_the_error	.\server2.erl	/^log_the_error(Name, Request, Why) ->$/;"	f	module:server2
 log_the_error	.\server3.erl	/^log_the_error(Name, Request, Why) ->$/;"	f	module:server3
 log_the_error	.\server4.erl	/^log_the_error(Name, Request, Why) ->$/;"	f	module:server4
 login	.\chat_client.erl	/^login(Username, Passwd) ->$/;"	f	module:chat_client
+lookup	.\kvs.erl	/^lookup(Key) -> rpc({lookup, Key}).$/;"	f	module:kvs
 loop	.\area_server0.erl	/^loop() ->$/;"	f	module:area_server0
 loop	.\area_server1.erl	/^loop() ->$/;"	f	module:area_server2
 loop	.\area_server2.erl	/^loop() ->$/;"	f	module:area_server2
 loop	.\area_server3.erl	/^loop() ->$/;"	f	module:area_server3
 loop	.\broadcasting.erl	/^loop(Socket) ->$/;"	f	module:broadcasting
 loop	.\ctemplate.erl	/^loop(X) ->$/;"	f	module:ctemplate
+loop	.\dist_demo.erl	/^loop() ->$/;"	f	module:dist_demo
 loop	.\echo.erl	/^loop() ->$/;"	f	module:echo
 loop	.\ex8_11_2.erl	/^loop() ->$/;"	f	module:ex8_11_2
+loop	.\kvs.erl	/^loop() ->$/;"	f	module:kvs
 loop	.\m1.erl	/^loop(0) ->$/;"	f	module:m1
 loop	.\m1.erl	/^loop(N) ->$/;"	f	module:m1
+loop	.\mod_name_server.erl	/^loop(MM) ->$/;"	f	module:mod_name_server
 loop	.\new_geometry.erl	/^loop() ->$/;"	f	module:area_server0
 loop	.\server1.erl	/^loop(Name, Mod, State) ->$/;"	f	module:server1
 loop	.\server2.erl	/^loop(Name, Mod, OldState) ->$/;"	f	module:server2
@@ -183,24 +304,41 @@ loop	.\socket_example.erl	/^loop(Socket) ->$/;"	f	module:socket_example
 loop	.\udp_test.erl	/^loop(Socket) ->$/;"	f	module:udp_test
 loop_seq_server	.\socket_example.erl	/^loop_seq_server(Listen) ->$/;"	f	module:socket_example
 m1	.\m1.erl	/^-module(m1).$/;"	m
-main	.\ex8_11_1.erl	/^main() ->$/;"	f	module:ex8_11_1
+main	.\Ex8_11_1.erl	/^main() ->$/;"	f	module:ex8_11_1
 main	.\ex8_11_2.erl	/^main() ->$/;"	f	module:ex8_11_2
 main	.\snail.erl	/^main(H) ->$/;"	f	module:snail
 main	.\spawn_link_test.erl	/^main(Bool, Msg) ->$/;"	f	module:spawn_link_test
+map	.\mylists.erl	/^map(F, [H|T]) -> [F(H)|map(F,T)]./;"	f	module:mylists
+map	.\mylists.erl	/^map(_, []) -> [];$/;"	f	module:mylists
 max	.\processes.erl	/^max(N) ->$/;"	f	module:processes
+maxSearch	.\chess_ai.erl	/^maxSearch(Board) ->$/;"	f	module:chess_ai
+minSearch	.\chess_ai.erl	/^minSearch(Board) ->$/;"	f	module:chess_ai
+mod_name_server	.\mod_name_server.erl	/^-module(mod_name_server).$/;"	m
+move	.\chess.erl	/^move(a, Pos, Board) ->$/;"	f	module:chess
+move	.\chess.erl	/^move(b, Pos, Board) ->$/;"	f	module:chess
+move	.\chess_ai.erl	/^move(a, Pos, Board) ->$/;"	f	module:chess_ai
+move	.\chess_ai.erl	/^move(b, Pos, Board) ->$/;"	f	module:chess_ai
 mp3_sync	.\mp3_sync.erl	/^-module(mp3_sync).$/;"	m
 my_bank	.\my_bank.erl	/^-define(my_bank, ?MODULE).$/;"	d
 my_bank	.\my_bank.erl	/^-module(my_bank).$/;"	m
 my_name_server	.\my_name_server.erl	/^-define(my_name_server, ?MODULE).$/;"	d
 my_name_server	.\my_name_server.erl	/^-module(my_name_server).$/;"	m
+mylists	.\mylists.erl	/^-module(mylists).$/;"	m
+name	.\wz\name.erl	/^-module(name).$/;"	m
+name	.\wz\name.hrl	/^-record(name, {id, name}).$/;"	r
+name_db	.\wz\name_db.erl	/^-module(name_db).$/;"	m
 name_server	.\name_server.erl	/^-module(name_server).$/;"	m
 name_server1	.\name_server1.erl	/^-module(name_server1).$/;"	m
 new_account	.\my_bank.erl	/^new_account(Who) -> gen_server:call(?MODULE, {new, Who}).$/;"	f	module:my_bank
+new_chat_client	.\new_chat_client.erl	/^-module(new_chat_client).$/;"	m
+new_chat_server	.\new_chat_server.erl	/^-module(new_chat_server).$/;"	m
 new_name_server	.\new_name_server.erl	/^-module(new_name_server).$/;"	m
 num	.\average.erl	/^num([H|T]) -> 1 + num(T).$/;"	f	module:average
 num	.\average.erl	/^num([]) -> 0;$/;"	f	module:average
 on_exit	.\on_exit.erl	/^-module(on_exit).$/;"	m
 on_exit	.\on_exit.erl	/^on_exit(Pid, Fun) ->$/;"	f	module:on_exit
+on_login_succ	.\new_chat_server.erl	/^on_login_succ(Username, Socket) ->$/;"	f	module:new_chat_server
+on_logout_succ	.\new_chat_server.erl	/^on_logout_succ(Username) ->$/;"	f	module:new_chat_server
 par_connect	.\socket_example.erl	/^par_connect(Listen) ->$/;"	f	module:socket_example
 pathogen#cycle_filetype	.\pathogen.vim	/^function! pathogen#cycle_filetype() " {{{1$/;"	f
 pathogen#execute	.\pathogen.vim	/^function! pathogen#execute(...) abort " {{{1$/;"	f
@@ -220,85 +358,152 @@ pathogen#separator	.\pathogen.vim	/^function! pathogen#separator() abort " {{{1$
 pathogen#split	.\pathogen.vim	/^function! pathogen#split(path) abort " {{{1$/;"	f
 pathogen#surround	.\pathogen.vim	/^function! pathogen#surround(path) abort " {{{1$/;"	f
 pathogen#uniq	.\pathogen.vim	/^function! pathogen#uniq(list) abort " {{{1$/;"	f
+perms	.\lib_misc.erl	/^perms(L) -> [[H|T] || H <- L, T <- perms(L--[H])].$/;"	f	module:lib_misc
+perms	.\lib_misc.erl	/^perms([]) -> [[]];$/;"	f	module:lib_misc
+play_game	.\chess.erl	/^play_game() ->$/;"	f	module:chess
+play_game	.\chess_ai.erl	/^play_game() ->$/;"	f	module:chess_ai
+print	.\tut.erl	/^print(X)->$/;"	f	module:tut
+print_board	.\chess.erl	/^print_board() ->$/;"	f	module:chess
+print_board	.\chess.erl	/^print_board(Board) ->$/;"	f	module:chess
+print_board	.\chess_ai.erl	/^print_board() ->$/;"	f	module:chess_ai
+print_board	.\chess_ai.erl	/^print_board(Board) ->$/;"	f	module:chess_ai
 processes	.\processes.erl	/^-module(processes).$/;"	m
+pythag	.\lib_misc.erl	/^pythag(N) ->$/;"	f	module:lib_misc
+qsort	.\lib_misc.erl	/^qsort([Pivot|T]) ->$/;"	f	module:lib_misc
+qsort	.\lib_misc.erl	/^qsort([]) -> [];$/;"	f	module:lib_misc
+re_test	.\re_test.erl	/^-module(re_test).$/;"	m
 receive_data	.\socket_example.erl	/^receive_data(Socket, SoFar) ->$/;"	f	module:socket_example
 receive_msg	.\chat_client.erl	/^receive_msg(Socket) ->$/;"	f	module:chat_client
 remove_all_names	.\my_name_server.erl	/^remove_all_names() -> gen_server:call(?MODULE, {remove_all_names}).$/;"	f	module:my_name_server
+remove_html_tag	.\re_test.erl	/^remove_html_tag(Data) ->$/;"	f	module:re_test
+remove_html_tag	.\re_test.erl	/^remove_html_tag(Data, Offset) ->$/;"	f	module:re_test
 remove_name	.\my_name_server.erl	/^remove_name(ID) -> gen_server:call(?MODULE, {remove, ID}).$/;"	f	module:my_name_server
 rpc	.\area_server1.erl	/^rpc(Pid, Request) ->$/;"	f	module:area_server2
 rpc	.\area_server2.erl	/^rpc(Pid, Request) ->$/;"	f	module:area_server2
 rpc	.\area_server3.erl	/^rpc(Pid, Request) ->$/;"	f	module:area_server3
 rpc	.\ctemplate.erl	/^rpc(Pid, Request) ->$/;"	f	module:ctemplate
+rpc	.\dist_demo.erl	/^rpc(Pid, M, F, A) ->$/;"	f	module:dist_demo
+rpc	.\kvs.erl	/^rpc(Request) ->$/;"	f	module:kvs
 rpc	.\server1.erl	/^rpc(Name, Request) ->$/;"	f	module:server1
 rpc	.\server2.erl	/^rpc(Name, Request) ->$/;"	f	module:server2
 rpc	.\server3.erl	/^rpc(Name, Request) ->$/;"	f	module:server3
 rpc	.\server4.erl	/^rpc(Name, Request) ->$/;"	f	module:server4
 s:done_bundles	.\pathogen.vim	/^let s:done_bundles = ''$/;"	v
 s:vopen_warning	.\pathogen.vim	/^let s:vopen_warning = 0$/;"	v
+said	.\wz\client.erl	/^said(DesUser, Msg) ->$/;"	f	module:client
 send	.\broadcasting.erl	/^send(IoList) ->$/;"	f	module:broadcasting
-send_data	.\chat_server.erl	/^send_data(Sockets, Data) ->$/;"	f	module:chat_server
+sendMessage	.\wz\server.erl	/^sendMessage(Data) ->$/;"	f	module:server
+sendMsg	.\wz\client.erl	/^sendMsg(Socket1, Data) ->$/;"	f	module:client
+send_all	.\chat_server.erl	/^send_all(Sockets, Data) ->$/;"	f	module:chat_server
+send_all	.\new_chat_server.erl	/^send_all(Data) ->$/;"	f	module:new_chat_server
 send_msg	.\chat_client.erl	/^send_msg(Socket) ->$/;"	f	module:chat_client
 send_msg	.\ex8_11_2.erl	/^send_msg(L, M) ->$/;"	f	module:ex8_11_2
 send_msg	.\ex8_11_2.erl	/^send_msg(_, 0) -> void;$/;"	f	module:ex8_11_2
 server	.\udp_test.erl	/^server(Port) ->$/;"	f	module:udp_test
+server	.\wz\server.erl	/^-module(server).$/;"	m
 server1	.\server1.erl	/^-module(server1).$/;"	m
 server2	.\server2.erl	/^-module(server2).$/;"	m
 server3	.\server3.erl	/^-module(server3).$/;"	m
 server4	.\server4.erl	/^-module(server4).$/;"	m
 set_name	.\my_name_server.erl	/^set_name(ID, Name) -> gen_server:call(?MODULE, {add, ID, Name}).$/;"	f	module:my_name_server
+shop	.\shop.erl	/^-module(shop).$/;"	m
 shop1	.\shop1.erl	/^-module(shop1).$/;"	m
-sleep	.\lib_misc.erl	/^sleep(T) ->$/;"	f	module:lib_misc
+shop2	.\shop2.erl	/^-module(shop2).$/;"	m
 sleep	.\spawn_link_test.erl	/^sleep(T) ->$/;"	f	module:spawn_link_test
 snail	.\snail.erl	/^-module(snail).$/;"	m
+socket	.\new_chat_server.erl	/^-record(socket,$/;"	r
+socket	.\wz\server.erl	/^-record(socket, {username, socket}).$/;"	r
 socket_example	.\socket_example.erl	/^-module(socket_example).$/;"	m
 spawn_link_test	.\spawn_link_test.erl	/^-module(spawn_link_test).$/;"	m
 sqr_sum	.\sqr_sum.erl	/^-module(sqr_sum).$/;"	m
 sqrt	.\sqrt.erl	/^-module(sqrt).$/;"	m
 sqrt	.\sqrt.erl	/^sqrt(X) ->$/;"	f	module:sqrt
 sqrt	.\sqrt.erl	/^sqrt(X) when X < 0 ->$/;"	f	module:sqrt
+start	.\Ex8_11_1.erl	/^start(atom1, Fun)->$/;"	f	module:ex8_11_1
 start	.\area_server3.erl	/^start() ->$/;"	f	module:area_server3
 start	.\chat_client.erl	/^start(Socket) ->$/;"	f	module:chat_client
 start	.\chat_client_recv.erl	/^start() ->$/;"	f	module:chat_client_recv
 start	.\chat_server.erl	/^start() ->$/;"	f	module:chat_server
+start	.\chess.erl	/^start() ->$/;"	f	module:chess
+start	.\chess_ai.erl	/^start() ->$/;"	f	module:chess_ai
 start	.\clock.erl	/^start(Time, Fun) ->$/;"	f	module:clock
 start	.\ctemplate.erl	/^start() ->$/;"	f	module:ctemplate
+start	.\dist_demo.erl	/^start(Node) ->$/;"	f	module:dist_demo
 start	.\echo.erl	/^start() ->$/;"	f	module:echo
 start	.\ets_operations.erl	/^start() ->$/;"	f	module:ets_test
 start	.\ets_test.erl	/^start() ->$/;"	f	module:ets_test
-start	.\ex8_11_1.erl	/^start(atom1, Fun)->$/;"	f	module:ex8_11_1
 start	.\hello.erl	/^start() ->$/;"	f	module:hello
+start	.\kvs.erl	/^start() -> register(kvs, spawn(fun() -> loop() end)).$/;"	f	module:kvs
 start	.\m1.erl	/^start() -> loop(5).$/;"	f	module:m1
 start	.\my_bank.erl	/^start() -> gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).$/;"	f	module:my_bank
 start	.\my_name_server.erl	/^start() -> gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).$/;"	f	module:my_name_server
+start	.\new_chat_server.erl	/^start() ->$/;"	f	module:new_chat_server
 start	.\server1.erl	/^start(Name, Mod) ->$/;"	f	module:server1
 start	.\server2.erl	/^start(Name, Mod) ->$/;"	f	module:server2
 start	.\server3.erl	/^start(Name, Mod) ->$/;"	f	module:server3
 start	.\server4.erl	/^start(Name, Mod) ->$/;"	f	module:server4
 start	.\stimer.erl	/^start(Time, Fun) ->$/;"	f	module:stimer
+start	.\time_tick.erl	/^start(Time, Fun) ->$/;"	f	module:time_tick
+startServer	.\wz\server.erl	/^startServer() ->$/;"	f	module:server
+start_link	.\chess.erl	/^start_link(Arg) ->$/;"	f	module:chess
+start_link	.\chess_ai.erl	/^start_link(Arg) ->$/;"	f	module:chess_ai
+start_link	.\wz\name.erl	/^start_link() ->$/;"	f	module:name
+start_me_up	.\mod_name_server.erl	/^start_me_up(MM, _ArgsC, _ArgS) ->$/;"	f	module:mod_name_server
 start_parallel_server	.\socket_example.erl	/^start_parallel_server() ->$/;"	f	module:socket_example
 start_seq_server	.\socket_example.erl	/^start_seq_server() ->$/;"	f	module:socket_example
 start_server	.\socket_example.erl	/^start_server() ->$/;"	f	module:socket_example
 start_server	.\udp_test.erl	/^start_server() ->$/;"	f	module:udp_test
+state	.\chess.erl	/^-record(state, {$/;"	r
+state	.\chess_ai.erl	/^-record(state, {$/;"	r
 stimer	.\stimer.erl	/^-module(stimer).$/;"	m
+stop	.\chess.erl	/^stop() ->$/;"	f	module:chess
+stop	.\chess.erl	/^stop(Reason) ->$/;"	f	module:chess
+stop	.\chess_ai.erl	/^stop() ->$/;"	f	module:chess_ai
+stop	.\chess_ai.erl	/^stop(Reason) ->$/;"	f	module:chess_ai
 stop	.\clock.erl	/^stop() ->$/;"	f	module:clock
 stop	.\my_bank.erl	/^stop() -> gen_server:call(?MODULE, stop).$/;"	f	module:my_bank
 stop	.\my_name_server.erl	/^stop() -> gen_server:call(?MODULE, stop).$/;"	f	module:my_name_server
+stop	.\time_tick.erl	/^stop () -> time_tick ! stop.$/;"	f	module:time_tick
+stop	.\wz\name.erl	/^stop() ->$/;"	f	module:name
+store	.\kvs.erl	/^store(Key, Value) -> rpc({store, Key, Value}).$/;"	f	module:kvs
 string2value	.\socket_example.erl	/^string2value(Str) ->$/;"	f	module:socket_example
 sum	.\average.erl	/^sum([H|T]) -> H + sum(T).$/;"	f	module:average
 sum	.\average.erl	/^sum([]) -> 0;$/;"	f	module:average
+sum	.\mylists.erl	/^sum([H|T]) -> H + sum(T);$/;"	f	module:mylists
+sum	.\mylists.erl	/^sum([]) -> 0.$/;"	f	module:mylists
 swap_code	.\server3.erl	/^swap_code(Name, Mod) -> rpc(Name, {swap_code, Mod}).$/;"	f	module:server3
 swap_code	.\server4.erl	/^swap_code(Name, Mod) -> rpc(Name, {swap_code, Mod}).$/;"	f	module:server4
+table	.\wz\name.hrl	/^-record(table, {name_lst, maxid, readnum, writenum}).$/;"	r
+terminate	.\chess.erl	/^terminate(_Reason, _State) ->$/;"	f	module:chess
+terminate	.\chess_ai.erl	/^terminate(_Reason, _State) ->$/;"	f	module:chess_ai
 terminate	.\my_bank.erl	/^terminate(_Reason, _State) -> ok.$/;"	f	module:my_bank
 terminate	.\my_name_server.erl	/^terminate(_Reason, _State) -> ok.$/;"	f	module:my_name_server
+terminate	.\wz\name.erl	/^terminate(_Reason, _LoopData) ->$/;"	f	module:name
+test	.\test.erl	/^-module(test).$/;"	m
 test_ets	.\ets_test.erl	/^test_ets(Mode) ->$/;"	f	module:ets_test
 tick	.\clock.erl	/^tick(Time, Fun) ->$/;"	f	module:clock
+tick	.\time_tick.erl	/^tick(Time, Fun) ->$/;"	f	module:time_tick
+time_tick	.\time_tick.erl	/^-module(time_tick).$/;"	m
 timer	.\stimer.erl	/^timer(Time, Fun) ->$/;"	f	module:stimer
+total	.\calc.erl	/^total([]) -> 0./;"	f	module:calc
+total	.\calc.erl	/^total([{What, N}|T]) -> shop:cost(What) * N + total(T);$/;"	f	module:calc
+total	.\shop2.erl	/^total(L) ->$/;"	f	module:shop2
 try_catch	.\try_catch.erl	/^-module(try_catch).$/;"	m
 try_test	.\try_test.erl	/^-module(try_test).$/;"	m
+tut	.\tut.erl	/^-module(tut).$/;"	m
+tut4	.\tut4.erl	/^-module(tut4).$/;"	m
 udp_test	.\udp_test.erl	/^-module(udp_test).$/;"	m
 unpack_header	.\mp3_sync.erl	/^unpack_header(X) ->$/;"	f	module:mp3_sync
 user	.\chat_server.hrl	/^-record(user, {$/;"	r
+user	.\wz\server.erl	/^-record(user, {$/;"	r
+user_login	.\new_chat_client.erl	/^user_login(Username, Passwd) ->$/;"	f	module:new_chat_client
+user_login	.\wz\client.erl	/^user_login(UserName, Password) ->$/;"	f	module:client
+user_login	.\wz\server.erl	/^user_login(User, Pasw) ->$/;"	f	module:server
+user_logout	.\new_chat_client.erl	/^user_logout(Username) ->$/;"	f	module:new_chat_client
+user_logout	.\wz\client.erl	/^user_logout(UserName) ->$/;"	f	module:client
+virtual_client	.\wz\server.erl	/^virtual_client(Socket1, Data) ->$/;"	f	module:server
 wait	.\spawn_link_test.erl	/^wait(Prog) ->$/;"	f	module:spawn_link_test
+wait_connect	.\wz\server.erl	/^wait_connect(ListenSocket, Count) ->$/;"	f	module:server
 wait_ref	.\udp_test.erl	/^wait_ref(Socket, Ref) ->$/;"	f	module:udp_test
 warn	.\pathogen.vim	/^function! s:warn(msg)$/;"	f
 whereis	.\name_server.erl	/^whereis(Name)    -> rpc(name_server, {whereis, Name}).$/;"	f	module:name_server
